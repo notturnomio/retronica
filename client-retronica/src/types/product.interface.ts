@@ -42,14 +42,16 @@ export enum EnumProductSort {
 export type TypeProducts = {
   products: IProduct[];
 };
+
 export type TypePaginationProducts = {
-  data: IProduct[];
-  meta: {
-    total: number;
-    lastPage: number;
-    currentPage: number;
-    perPage: number;
-    prev: number | null;
-    next: number | null;
-  };
+  products: IProduct[];
+  length: number;
+  // meta: {
+  //   total: number;
+  //   lastPage: number;
+  //   currentPage: number;
+  //   perPage: number;
+  //   prev: number | null;
+  //   next: number | null;
+  // };
 };

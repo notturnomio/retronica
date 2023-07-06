@@ -5,7 +5,7 @@ const USERS = 'users';
 
 const UserService = {
   async getProfile() {
-    return instance<IFullUser[]>({
+    return instance<IFullUser>({
       url: `${USERS}/profile`,
       method: 'GET'
     });
@@ -19,7 +19,7 @@ const UserService = {
     });
   },
 
-  async toggleFavorite(productId: string) {
+  async toggleFavorite(productId: number) {
     return instance<IFullUser>({
       url: `${USERS}/profile/favorites/${productId}`,
       method: 'PATCH'

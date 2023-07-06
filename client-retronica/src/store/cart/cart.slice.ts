@@ -1,52 +1,51 @@
 import { PayloadAction, createSlice, current } from '@reduxjs/toolkit';
 import { getFromLocalStorage } from 'lib/utils';
-import { ICartInitialState, ICartItem } from 'types/cart.interface';
+import {
+  IAddToCartPayload,
+  ICartInitialState,
+  ICartItem,
+  IChangeQuantityPayload
+} from 'types/cart.interface';
 import { IProduct } from 'types/product.interface';
 
 // import type { Product } from 'types/product.interface';
 
 const initialState: ICartInitialState = {
-  items: JSON.parse(getFromLocalStorage('cart') || '[]')
+  items: []
 };
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state: ICartInitialState, action: PayloadAction<ICartItem>) => {
+    addToCart: (state, action: PayloadAction<IAddToCartPayload>) => {
       const newItem = action.payload;
-      const isItemExist = current(state.items).findIndex(
-        item => item.id === newItem.id
+      const isItemExist = state.items.some(
+        item => item.product.id === action.payload.product.id
       );
-      if (isItemExist >= 0) return;
-      state.items.push({
-        ...newItem,
-        id: newItem.id
-        // count: newItem.count || 1
-      });
-    },
-    removeFromCart: (
-      state: ICartInitialState,
-      action: PayloadAction<IProduct>
-    ) => {
-      const itemId = action.payload.id;
-      state.items = current(state.items).filter(item => item.id !== itemId);
-    },
-    updateCartItem: (
-      state: ICartInitialState,
-      action: PayloadAction<ICartItem>
-    ) => {
-      const itemId = action.payload.id;
-      const index = current(state.items).findIndex(item => item.id === itemId);
-      if (index >= 0) {
-        state.items[index] = action.payload;
+
+      if (!isItemExist) {
+        state.items.push({ ...action.payload, id: state.items.length });
       }
     },
-    clearCart: (state: ICartInitialState) => {
+    removeFromCart: (state, action: PayloadAction<{ id: number }>) => {
+      state.items = state.items.filter(item => item.id !== action.payload.id);
+    },
+    changeQuantity: (state, action: PayloadAction<IChangeQuantityPayload>) => {
+      const { id, type } = action.payload;
+      const item = state.items.find(item => item.id === id);
+      if (item)
+        type === 'plus'
+          ? item.quantity++
+          : item.quantity >= 0
+          ? item.quantity--
+          : item.quantity;
+    },
+    clearCart: state => {
       state.items = [];
     }
   }
 });
 
-export const { addToCart, removeFromCart, updateCartItem, clearCart } =
+export const { addToCart, removeFromCart, changeQuantity, clearCart } =
   cartSlice.actions;

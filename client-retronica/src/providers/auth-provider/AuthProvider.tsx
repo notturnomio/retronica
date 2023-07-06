@@ -3,7 +3,7 @@ import { useAuth } from 'hooks/useAuth';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { Component, FC, PropsWithChildren, useEffect } from 'react';
+import { FC, PropsWithChildren, useEffect } from 'react';
 import { getAccessToken } from 'services/auth/auth.helper';
 
 import { TypeComponentAuthFields } from './auth-page.types';

@@ -1,6 +1,7 @@
-import { instance } from 'api/api.interceptor';
+import { axiosClassic, instance } from 'api/api.interceptor';
 import {
   IProduct,
+  TypePaginationProducts,
   TypeProductData,
   TypeProductFilters
 } from 'types/product.interface';
@@ -9,29 +10,30 @@ const PRODUCTS = 'products';
 
 const ProductService = {
   async getAll(queryData = {} as TypeProductFilters) {
-    return instance<IProduct[]>({
+    const { data } = await axiosClassic<TypePaginationProducts>({
       url: PRODUCTS,
       method: 'GET',
       params: queryData
     });
+    return data;
   },
 
   async getSimilar(productId: string) {
-    return instance<IProduct[]>({
+    return axiosClassic<IProduct[]>({
       url: `${PRODUCTS}/similar/${productId}`,
       method: 'GET'
     });
   },
 
   async getBySlug(slug: string) {
-    return instance<IProduct>({
+    return axiosClassic<IProduct>({
       url: `${PRODUCTS}/by-slug/${slug}`,
       method: 'GET'
     });
   },
 
   async getByCategory(categorySlug: string) {
-    return instance<IProduct[]>({
+    return axiosClassic<IProduct[]>({
       url: `${PRODUCTS}/by-category/${categorySlug}`,
       method: 'GET'
     });

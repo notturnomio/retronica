@@ -4,6 +4,14 @@
   "useTabs": false,
   "semi": true,
   "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.tsx",
+      "options": {
+        "parser": "babel-ts"
+      }
+    }
+  ],
   "arrowParens": "avoid",
   "importOrder": [
     "<THIRD_PARTY_MODULES>",

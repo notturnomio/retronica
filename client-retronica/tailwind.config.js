@@ -11,9 +11,11 @@ const colors = {
   accent: '#00E7D3',
   bg_green: '#C4FCF1',
   bg_yellow: '#FCF0CA',
-  bg_light: '#fffcf4',
+  bg_light: '#f6f3e6',
   dark: '#4B4737',
-  grey: '#B1AB99'
+  grey: '#B1AB99',
+  light_grey: '#d3cdba',
+  red: twColors.red[500]
 };
 
 module.exports = {
@@ -62,7 +64,7 @@ module.exports = {
       },
       animation: {
         opacity: 'animationOpacity .5s easy-in-out',
-        scaleIn: 'scaleIn .35s easy-in-out'
+        scaleIn: 'scaleIn 1s'
       }
     }
   },

@@ -5,7 +5,6 @@ import {
   HttpCode,
   Param,
   Post,
-  Put,
   UsePipes,
   ValidationPipe
 } from '@nestjs/common';
@@ -39,10 +38,8 @@ export class ReviewController {
   }
 
   // get average rating
-  @UsePipes(new ValidationPipe())
-  @Get('reviews/:id')
-  @Put(':id')
-  async update(@Param('id') reviewId: string) {
+  @Get('average-by-product/:id')
+  async getAverageByProduct(@Param('id') reviewId: string) {
     return this.reviewService.getAverageRating(+reviewId);
   }
 }

@@ -3,21 +3,26 @@ import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme: 'yellow' | 'white';
+  size?: 'sm' | 'md' | 'lg';
 }
 
 const Button: FC<PropsWithChildren<IButton>> = ({
   children,
   className,
   theme,
+  size = 'md',
   ...rest
 }) => {
   return (
     <button
       className={cn(
-        'rounded-full font-medium shadow px-8 py-2',
+        'rounded-full font-medium shadow transition duration-100 ease-in-out hover:shadow-lg',
         {
-          'text-black bg-primary': theme === 'yellow',
-          'text-primary bg-bg_light': theme === 'white'
+          'bg-primary text-black': theme === 'yellow',
+          'bg-white text-primary': theme === 'white',
+          'px-5 py-2 text-sm': size === 'sm',
+          'text-md px-7 py-3': size === 'md',
+          'px-8 py-3 text-xl': size === 'lg'
         },
         className
       )}

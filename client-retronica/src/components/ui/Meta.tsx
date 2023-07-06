@@ -9,7 +9,7 @@ interface ISeo {
 }
 
 export const titleMerge = (title: string) =>
-  `${title} | Marketplace for Vintage Electronics`;
+  `${title} | Retronica - Marketplace for Vintage Electronics`;
 
 const Meta: FC<PropsWithChildren<ISeo>> = ({
   title,

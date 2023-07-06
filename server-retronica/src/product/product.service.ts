@@ -5,7 +5,7 @@ import { generateSlug } from 'src/utils/generate-slug';
 import { PaginationService } from './../pagination/pagination.service';
 import { EnumProductSort, GetAllProductDto } from './dto/get-all.product.dto';
 import { ProductDto } from './dto/product.dto';
-import { returnProductObject, returnProductObjectFull } from './product.object';
+import { returnProductObject } from './product.object';
 
 @Injectable()
 export class ProductService {
@@ -59,7 +59,8 @@ export class ProductService {
       where: prismaSearchTermFilter,
       orderBy: prismaSort,
       skip,
-      take: perPage
+      take: perPage,
+      select: returnProductObject
     });
 
     return {
@@ -73,7 +74,7 @@ export class ProductService {
   async byId(id: number) {
     const product = await this.prisma.product.findUnique({
       where: { id },
-      select: returnProductObjectFull
+      select: returnProductObject
     });
 
     if (!product) {
@@ -86,7 +87,7 @@ export class ProductService {
   async bySlug(slug: string) {
     const product = await this.prisma.product.findUnique({
       where: { slug },
-      select: returnProductObjectFull
+      select: returnProductObject
     });
 
     if (!product) {
@@ -103,7 +104,7 @@ export class ProductService {
           slug: categorySlug
         }
       },
-      select: returnProductObjectFull
+      select: returnProductObject
     });
 
     if (!products) {
