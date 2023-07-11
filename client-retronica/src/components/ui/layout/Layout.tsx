@@ -4,11 +4,14 @@ import Sidebar from './sidebar/Sidebar';
 
 const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
   return (
-    <div>
+    <div className="flex h-screen overflow-x-hidden">
       <Header />
-      <div className="grid" style={{ gridTemplateColumns: '1fr 4fr' }}>
+      <div
+        className="mt-[88px] grid w-full"
+        style={{ gridTemplateColumns: '1fr 4fr' }}
+      >
         <Sidebar />
-        <main className="p-12">{children}</main>
+        <main className="flex-grow p-12">{children}</main>
       </div>
     </div>
   );

@@ -54,7 +54,7 @@ const CatalogWithPagination: FC<ICatalogPagination> = ({ data, title }) => {
               const pageNumber = index + 1;
               return (
                 <Button
-                  className="mx-3 h-[40px] w-[40px] px-1 py-1"
+                  className="mx-3 h-[40px] w-[40px] md:px-1 md:py-1"
                   key={pageNumber}
                   theme={page === pageNumber ? 'yellow' : 'white'}
                   size="sm"

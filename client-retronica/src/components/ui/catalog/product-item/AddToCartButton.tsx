@@ -22,7 +22,8 @@ const AddToCartButton: FC<{ product: IProduct }> = ({ product }) => {
             : addToCart({
                 product,
                 quantity: 1,
-                price: product.price
+                price: product.price,
+                productId: product.id
               })
         }
       >

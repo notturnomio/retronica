@@ -9,7 +9,7 @@ import HeaderCart from './cart/HeaderCart';
 const Header: FC = () => {
   return (
     <header
-      className="grid w-full bg-black px-6 py-6"
+      className="fixed top-0 z-50 grid w-full bg-black px-6 py-6 drop-shadow-md"
       style={{ gridTemplateColumns: '1fr 3fr 1.2fr' }}
     >
       <Link href={'/'}>
@@ -22,8 +22,11 @@ const Header: FC = () => {
         />
       </Link>
       <Search />
-      <div className="flex items-center justify-end gap-10">
-        <Link href="/favorites" className="text-white">
+      <div className="flex items-center justify-end gap-6">
+        <Link
+          href="/favorites"
+          className="text-white transition-colors duration-200 hover:text-primary"
+        >
           <AiOutlineHeart size={28} title="My favorites" />
         </Link>
         <HeaderCart />

@@ -1,6 +1,6 @@
 import cn from 'clsx';
 import Button from 'components/ui/button/Button';
-import SquareButton from 'components/ui/button/SquareButton';
+import RoundButton from 'components/ui/button/RoundButton';
 import { useCart } from 'hooks/useCart';
 import { useOutside } from 'hooks/useOutside';
 import { useRouter } from 'next/router';
@@ -14,7 +14,7 @@ const HeaderCart: FC = () => {
   const { isShow, setIsShow, ref } = useOutside(false);
   const { items, total } = useCart();
 
-  const { push } = useRouter();
+  const { push, replace } = useRouter();
   // const { mutate } = useMutation(
   //   ['create payment'],
   //   () => PaymentService.createPayment(total),
@@ -26,15 +26,15 @@ const HeaderCart: FC = () => {
   // );
 
   return (
-    <div className="relative" ref={ref}>
-      <SquareButton
+    <div className="relative" ref={ref} title="cart">
+      <RoundButton
         Icon={RiShoppingCartLine}
         onClick={() => setIsShow(!isShow)}
         number={items.length}
       />
       <div
         className={cn(
-          'menu absolute -left-[12.5rem] top-[3.2rem] z-20 w-80 rounded-xl bg-secondary px-5 py-3 text-sm text-white',
+          'menu absolute -left-[15rem] top-[3.2rem] z-20 block max-h-[85vh] w-80 overflow-auto rounded-xl bg-secondary px-5 py-3 text-sm text-white',
           isShow ? 'open-menu' : 'close-menu'
         )}
       >
@@ -57,6 +57,7 @@ const HeaderCart: FC = () => {
             theme="white"
             size="sm"
             className="btn-link mb-2 mt-5 text-secondary"
+            onClick={() => push('/orders/checkout')}
           >
             Place Order
           </Button>

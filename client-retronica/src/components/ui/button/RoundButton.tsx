@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { IconType } from 'react-icons';
 
-interface ISquareButton {
+interface IRoundButton {
   Icon: IconType;
   onClick?: () => void;
   number?: number;
 }
 
-const SquareButton: FC<ISquareButton> = ({ Icon, onClick, number }) => {
+const RoundButton: FC<IRoundButton> = ({ Icon, onClick, number }) => {
   return (
     <button
       onClick={onClick}
@@ -23,4 +23,4 @@ const SquareButton: FC<ISquareButton> = ({ Icon, onClick, number }) => {
   );
 };
 
-export default SquareButton;
+export default RoundButton;

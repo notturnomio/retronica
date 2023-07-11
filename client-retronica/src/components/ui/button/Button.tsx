@@ -16,7 +16,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
   return (
     <button
       className={cn(
-        'rounded-full font-medium shadow transition duration-100 ease-in-out hover:shadow-lg',
+        'rounded-full text-center font-medium shadow transition duration-100 ease-in-out hover:shadow-lg',
         {
           'bg-primary text-black': theme === 'yellow',
           'bg-white text-primary': theme === 'white',

@@ -5,6 +5,8 @@ export interface ICartItem {
   product: IProduct;
   quantity: number;
   price: number;
+  productId: number;
+  // productId: IProduct['id'];
 }
 
 export interface ICartInitialState {

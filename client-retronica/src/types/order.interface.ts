@@ -14,5 +14,28 @@ export interface IOrder {
   items: ICartItem[];
   status: EnumOrderStatus;
   user: IUser;
-  total: number;
+  amount: number;
+  paymentIntentId: string;
+}
+
+export interface IOrderCheckout {
+  items: ICartItem[];
+  status?: EnumOrderStatus;
+}
+
+export interface IPlaceOrderResponse {
+  paymentIntentObj: {
+    id: string;
+    client_secret: string;
+    // Add other necessary properties based on your usage
+  };
+  order: {
+    id: number;
+    createdAt: string;
+    updatedAt: string;
+    status: string;
+    amount: number;
+    paymentIntentId: string;
+    userId: number;
+  };
 }
